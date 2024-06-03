@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SchoolBooks.Services.DTO.Pupils;
+using SchoolBooks.Services.DTO.School;
 using SchoolBooks.Services.DTO.SchoolBook;
 using SchoolBooks.Services.Interfaces;
 
@@ -11,9 +12,9 @@ namespace SchoolBooks.Controllers
     [ApiController]
     public class SchoolController : Controller
     {
-        private readonly ISchoolService<SchoolBookDTORead,SchoolBookDtoWrite> _service;
+        private readonly ISchoolService<SchoolDto,SchoolDto> _service;
 
-        public SchoolController(ISchoolService<SchoolBookDTORead, SchoolBookDtoWrite> service)
+        public SchoolController(ISchoolService<SchoolDto, SchoolDto> service)
         {
             _service = service;
         }

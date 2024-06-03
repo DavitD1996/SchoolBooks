@@ -14,6 +14,7 @@
     using SchoolBooks.Services.DTO.Pupils;
     using SchoolBooks.Services.DTO.School;
     using SchoolBooks.Services.DTO.SchoolBook;
+    using SchoolBooks.Services.Helpers;
     using SchoolBooks.Services.Interfaces;
 
     public class Startup
@@ -70,8 +71,20 @@
                 endpoints.MapControllers();
             });
 
-            // Call the seed method
-           
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                try
+                {
+                    SeedData.Initialize(services);
+                }
+                catch (Exception)
+                {
+                    // Handle the error (you could write to a file, console, etc., if needed)
+                    throw;
+                }
+            }
+
         }
     }
 
